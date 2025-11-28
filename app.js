@@ -17,7 +17,12 @@ function generateSneakers(count = 200) {
     const size = 37 + Math.floor(Math.random() * 7);
     const price = 350 + Math.floor(Math.random() * 500);
     const id = `p-${i.toString().padStart(3, "0")}`;
-    const photo = `https://picsum.photos/seed/${brand}-${model}-${i}/400/300`;
+    const seed = `${brand}-${model}-${i}`
+  .toLowerCase()
+  .replace(/\s+/g, '-')   // troca espaços por hífen
+  .replace(/[^a-z0-9-]/g, ''); // remove qualquer caractere inválido
+
+const photo = `https://picsum.photos/seed/${seed}/400/300`;
 
     items.push({ id, name: `${brand} ${model}`, brand, size, price, photo });
   }
