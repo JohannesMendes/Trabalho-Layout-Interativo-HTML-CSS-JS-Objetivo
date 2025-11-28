@@ -1,0 +1,145 @@
+:root {
+  --bg: #0b1220;
+  --panel: #0f172a;
+  --surface: #111827;
+  --card: #1f2937;
+  --accent: #22c55e;
+  --accent-2: #0ea5e9;
+  --danger: #ef4444;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto;
+  color: var(--text);
+  background:
+    radial-gradient(800px 400px at 20% -10%, #0a0f1a 0%, var(--bg) 60%)
+    fixed;
+}
+
+/* Topbar */
+.topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; padding: 1rem 1.25rem; background: #0a1224; border-bottom: 1px solid #1e293b;
+}
+.topbar h1 { margin: 0; font-size: 1.25rem; letter-spacing: .2px; }
+.actions { display: flex; gap: .5rem; }
+.actions button {
+  background: var(--accent-2); color: #001; border: 0; padding: .5rem .75rem; border-radius: .5rem; cursor: pointer; font-weight: 600;
+}
+.actions button:hover { filter: brightness(1.1); transition: filter .15s; }
+
+/* Layout principal com Grid */
+.layout {
+  display: grid;
+  grid-template-columns: 320px 1fr 320px;
+  gap: 1rem; padding: 1rem;
+  align-items: start;
+}
+.filters-panel, .gallery, .report {
+  background: var(--panel);
+  border: 1px solid #1f2a3a; border-radius: .75rem; padding: 1rem;
+}
+.filters-panel h2, .gallery h2, .report h2 { margin-top: 0; }
+
+/* Filtros (Flex) */
+.filters { display: flex; flex-direction: column; gap: .75rem; }
+.filters .row { display: flex; gap: .75rem; }
+.filters label { display: flex; flex-direction: column; gap: .25rem; flex: 1; }
+.filters input, .filters select {
+  background: #0b1220; border: 1px solid #243447; color: var(--text);
+  padding: .55rem .6rem; border-radius: .5rem;
+}
+.toggles { display: flex; gap: .75rem; flex-wrap: wrap; }
+.toggle { display: inline-flex; align-items: center; gap: .5rem; color: var(--muted); }
+
+/* Galeria de cards com Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: .75rem; padding-top: .5rem;
+}
+
+/* Card */
+.card {
+  display: flex; flex-direction: column; gap: .6rem;
+  background: var(--card);
+  border: 1px solid #334155; border-radius: .75rem; padding: .75rem;
+  transform: translateY(6px);
+  animation: enter .35s ease-out both;
+}
+.card .thumb {
+  height: 140px; border-radius: .5rem;
+  background: linear-gradient(135deg, #111, #1f2937);
+  display: grid; place-items: center; color: var(--muted); font-size: .9rem;
+}
+.card h3 { margin: .25rem 0 0; font-size: 1rem; }
+.card .meta { display: flex; justify-content: space-between; color: var(--muted); font-size: .9rem; }
+.card .badges { display: flex; gap: .4rem; flex-wrap: wrap; }
+.badge { background: #0b1220; border: 1px solid #223044; color: var(--muted); font-size: .75rem; padding: .2rem .4rem; border-radius: .4rem; }
+
+.card .actions { display: flex; gap: .5rem; margin-top: .25rem; }
+.card button {
+  border: 0; padding: .45rem .6rem; border-radius: .5rem; cursor: pointer; font-weight: 600;
+  background: #334155; color: var(--text);
+}
+.card button.fav { background: #eab308; color: #221; }
+.card button.cart { background: var(--accent); color: #041; }
+.card button.del { background: var(--danger); color: #210; }
+
+.card:hover { transform: translateY(0); box-shadow: 0 6px 18px rgba(0,0,0,.35); transition: transform .2s, box-shadow .2s; }
+.card.removing { animation: fadeout .25s linear forwards; }
+
+/* Feedbacks e animações */
+.card.ok { box-shadow: 0 0 0 0 rgba(34,197,94,.7); animation: glow .9s ease-out; }
+.card.err { animation: shake .45s ease; border-color: var(--danger); }
+.price-drop { animation: pop .4s ease both; }
+.fav-pulse { animation: pulse .5s ease; }
+
+@keyframes enter {
+  from { opacity: 0; transform: translateY(12px) scale(.98); }
+  to   { opacity: 1; transform: translateY(6px) scale(1); }
+}
+@keyframes glow {
+  0% { box-shadow: 0 0 0 0 rgba(34,197,94,.6); }
+  60% { box-shadow: 0 0 0 24px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+@keyframes fadeout {
+  to { opacity: 0; transform: translateY(12px); }
+}
+@keyframes pop {
+  from { transform: scale(1); }
+  60% { transform: scale(1.06); }
+  to { transform: scale(1); }
+}
+@keyframes pulse {
+  from { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+
+/* Report */
+.report ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem; }
+.report li { display: flex; justify-content: space-between; }
+
+/* Responsivo */
+@media (max-width: 1024px) {
+  .layout { grid-template-columns: 1fr 1fr; }
+  .report { grid-column: span 2; }
+}
+@media (max-width: 720px) {
+  .layout { grid-template-columns: 1fr; }
+  .report { grid-column: auto; }
+}
+footer { padding: 1rem; text-align: center; color: var(--muted); }
