@@ -122,6 +122,65 @@ document.getElementById('onlyFavInput').addEventListener('change', e => {
 
 // Inicialização automática
 window.addEventListener('DOMContentLoaded', () => {
-  state.items = generateSneakers(200);
-  render();
-});
+  state.items = function generateSneakers(count = 200) {
+  const catalog = [
+    {
+      name: "Nike Air Max 90",
+      brand: "Nike",
+      photo: "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto/nike-air-max-90.jpg"
+    },
+    {
+      name: "Adidas Ultraboost",
+      brand: "Adidas",
+      photo: "https://assets.adidas.com/images/w_600,f_auto,q_auto/ultraboost.jpg"
+    },
+    {
+      name: "Puma RS-X",
+      brand: "Puma",
+      photo: "https://images.puma.com/image/upload/rs-x.jpg"
+    },
+    {
+      name: "New Balance 574",
+      brand: "New Balance",
+      photo: "https://nb.scene7.com/is/image/NewBalance/574.jpg"
+    },
+    {
+      name: "Asics Gel Nimbus",
+      brand: "Asics",
+      photo: "https://asics.scene7.com/is/image/Asics/gel-nimbus.jpg"
+    },
+    {
+      name: "Vans Old Skool",
+      brand: "Vans",
+      photo: "https://images.vans.com/is/image/Vans/old-skool.jpg"
+    },
+    {
+      name: "Converse Chuck 70",
+      brand: "Converse",
+      photo: "https://www.converse.com/on/demandware.static/chuck70.jpg"
+    },
+    {
+      name: "Nike Blazer Mid",
+      brand: "Nike",
+      photo: "https://static.nike.com/a/images/blazer-mid.jpg"
+    }
+  ];
+
+  const items = [];
+  for (let i = 1; i <= count; i++) {
+    const base = catalog[Math.floor(Math.random() * catalog.length)];
+    const size = 37 + Math.floor(Math.random() * 7); // 37–43
+    const price = 350 + Math.floor(Math.random() * 500); // R$350–850
+    const id = `p-${i.toString().padStart(3, "0")}`;
+
+    items.push({
+      id,
+      name: base.name,
+      brand: base.brand,
+      size,
+      price,
+      photo: base.photo
+    });
+  }
+  return items;
+}
