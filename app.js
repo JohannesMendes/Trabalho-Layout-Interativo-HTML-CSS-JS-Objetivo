@@ -14,8 +14,8 @@ function generateSneakers(count = 200) {
   for (let i = 1; i <= count; i++) {
     const brand = brands[Math.floor(Math.random() * brands.length)];
     const model = models[Math.floor(Math.random() * models.length)];
-    const size = 37 + Math.floor(Math.random() * 7); // 37–43
-    const price = 350 + Math.floor(Math.random() * 500); // R$350–850
+    const size = 37 + Math.floor(Math.random() * 7);
+    const price = 350 + Math.floor(Math.random() * 500);
     const id = `p-${i.toString().padStart(3, "0")}`;
     const photo = `https://picsum.photos/seed/${brand}-${model}-${i}/400/300`;
 
@@ -53,10 +53,16 @@ function getVisibleItems() {
 function render() {
   const grid = document.getElementById('grid');
   const empty = document.getElementById('emptyState');
+
+  if (!grid) {
+    console.error("❌ ERRO: ELEMENTO #grid NÃO EXISTE NO HTML!");
+    return;
+  }
+
   const visible = getVisibleItems();
 
   grid.innerHTML = '';
-  empty.hidden = visible.length > 0;
+  if (empty) empty.hidden = visible.length > 0;
 
   visible.forEach(it => {
     const card = document.createElement('article');
@@ -72,55 +78,74 @@ function render() {
         <button class="fav-btn ${state.favorites.has(it.id) ? 'active' : ''}" data-id="${it.id}">♡</button>
       </div>
     `;
+
     card.querySelector('.fav-btn').addEventListener('click', e => {
       const id = e.currentTarget.dataset.id;
       if (state.favorites.has(id)) {
         state.favorites.delete(id);
-        e.currentTarget.classList.remove('active');
       } else {
         state.favorites.add(id);
-        e.currentTarget.classList.add('active');
       }
+      render();
       updateStats();
     });
+
     grid.appendChild(card);
   });
 
   updateStats();
 }
 
+// Contadores
 function updateStats() {
-  document.getElementById('visibleCount').textContent = getVisibleItems().length;
-  document.getElementById('favCount').textContent = state.favorites.size;
+  const visibleCount = document.getElementById('visibleCount');
+  const favCount = document.getElementById('favCount');
+  
+  if (visibleCount) visibleCount.textContent = getVisibleItems().length;
+  if (favCount) favCount.textContent = state.favorites.size;
 }
 
-// Eventos de filtros
-document.getElementById('searchInput').addEventListener('keyup', e => {
+// Eventos
+function safeAddListener(id, event, callback) {
+  const el = document.getElementById(id);
+  if (!el) {
+    console.warn(`⚠️ AVISO: O elemento #${id} não existe no HTML.`);
+    return;
+  }
+  el.addEventListener(event, callback);
+}
+
+safeAddListener('searchInput', 'keyup', e => {
   state.filters.search = e.target.value.trim();
   render();
 });
-document.getElementById('brandSelect').addEventListener('change', e => {
+
+safeAddListener('brandSelect', 'change', e => {
   state.filters.brand = e.target.value;
   render();
 });
-document.getElementById('sizeSelect').addEventListener('change', e => {
+
+safeAddListener('sizeSelect', 'change', e => {
   state.filters.size = e.target.value;
   render();
 });
-document.getElementById('maxPriceInput').addEventListener('change', e => {
+
+safeAddListener('maxPriceInput', 'change', e => {
   state.filters.maxPrice = e.target.value;
   render();
 });
-document.getElementById('sortSelect').addEventListener('change', e => {
+
+safeAddListener('sortSelect', 'change', e => {
   state.filters.sort = e.target.value;
   render();
 });
-document.getElementById('onlyFavInput').addEventListener('change', e => {
+
+safeAddListener('onlyFavInput', 'change', e => {
   state.filters.onlyFav = e.target.checked;
   render();
 });
 
-// Inicialização automática
+// Inicialização
 window.addEventListener('DOMContentLoaded', () => {
   state.items = generateSneakers(200);
   render();
