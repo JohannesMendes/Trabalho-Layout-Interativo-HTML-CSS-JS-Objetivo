@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tênis Store — Catálogo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="branding">
+      <span class="logo">👟</span>
+      <h1 class="site-title">Tênis Store</h1>
+    </div>
+    <nav class="actions">
+      <button id="seedBtn" class="btn primary">Repopular catálogo</button>
+      <button id="clearFavBtn" class="btn danger">Limpar favoritos</button>
+      <button id="toggleThemeBtn" class="btn ghost" title="Atalho: tecla D">Alternar tema</button>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <aside class="filters-panel">
+      <h2>Filtros</h2>
+      <form id="filtersForm" class="filters">
+        <label class="field">
+          <span>Busca</span>
+          <input id="searchInput" type="search" placeholder="Modelo ou marca..." />
+        </label>
+
+        <div class="row">
+          <label class="field">
+            <span>Marca</span>
+            <select id="brandSelect">
+              <option value="">Todas</option>
+              <option>Nike</option>
+              <option>Adidas</option>
+              <option>Puma</option>
+              <option>New Balance</option>
+              <option>Asics</option>
+              <option>Vans</option>
+              <option>Converse</option>
+              <option>Reebok</option>
+              <option>Saucony</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Número</span>
+            <select id="sizeSelect">
+              <option value="">Todos</option>
+              <option>37</option>
+              <option>38</option>
+              <option>39</option>
+              <option>40</option>
+              <option>41</option>
+              <option>42</option>
+              <option>43</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="field">
+            <span>Até (R$)</span>
+            <input id="maxPriceInput" type="number" min="0" step="50" placeholder="Ex.: 600" />
+          </label>
+          <label class="field">
+            <span>Ordenar</span>
+            <select id="sortSelect">
+              <option value="">Padrão</option>
+              <option value="price-asc">Preço ↑</option>
+              <option value="price-desc">Preço ↓</option>
+              <option value="name-asc">Nome A–Z</option>
+              <option value="name-desc">Nome Z–A</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="toggles">
+          <label class="toggle">
+            <input id="onlyFavInput" type="checkbox" />
+            <span>Somente favoritos</span>
+          </label>
+        </div>
+
+        <div class="actions-row">
+          <button type="submit" class="btn primary">Aplicar filtros</button>
+          <button type="reset" class="btn ghost">Limpar filtros</button>
+        </div>
+      </form>
+
+      <section class="stats">
+        <p><strong>Visíveis:</strong> <span id="visibleCount">0</span></p>
+        <p><strong>Favoritos:</strong> <span id="favCount">0</span></p>
+      </section>
+    </aside>
+
+    <section class="catalog">
+      <div class="catalog-header">
+        <h2>Catálogo de Tênis</h2>
+        <p class="catalog-subtitle">Colorido, responsivo e com 200 modelos</p>
+      </div>
+      <div id="grid" class="grid"></div>
+      <div id="emptyState" class="empty" hidden>
+        <p>Nenhum item encontrado. Ajuste os filtros ou repopule o catálogo.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="toastContainer" class="toasts"></div>
+
+  <footer class="footer">
+    <small>&copy; 2025 Tênis Store — Projeto acadêmico</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
