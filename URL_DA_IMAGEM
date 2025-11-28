@@ -1,0 +1,8 @@
+state.items.push({
+  id: "p-201",
+  name: "Vitrine de Tênis",
+  brand: "Multimarcas",
+  size: 42,
+  price: 799.90,
+  photo: "URL_DA_IMAGEM"
+});
