@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneaker Store | Minimal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <header>
+        <h1>SNEAKER.DRIP</h1>
+        <p>Catálogo Essencial 2026</p>
+    </header>
+
+    <main id="catalog" class="container">
+        </main>
+
+    <footer>
+        <p>&copy; 2026 Minimal Sneaker Catalog</p>
+    </footer>
+
+    <script>
+        const catalog = document.getElementById('catalog');
+        
+        // Simulando 50 tênis
+        for (let i = 1; i <= 50; i++) {
+            const shoeCard = document.createElement('div');
+            shoeCard.className = 'card';
+            
+            // Usando uma imagem padrão do Unsplash para demonstração
+            shoeCard.innerHTML = `
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" alt="Tênis ${i}">
+                <div class="info">
+                    <h3>Sneaker Model #${i}</h3>
+                    <p>R$ ${Math.floor(Math.random() * (800 - 200) + 200)},90</p>
+                    <button>Ver Detalhes</button>
+                </div>
+            `;
+            catalog.appendChild(shoeCard);
+        }
+    </script>
+</body>
+</html>
