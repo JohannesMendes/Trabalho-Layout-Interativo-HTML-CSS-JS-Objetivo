@@ -1,92 +1,158 @@
+/* Configurações Globais (Reset) */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif; /* Fonte moderna */
 }
 
 body {
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: #fcfcfc; /* Fundo quase branco para destacar os cards */
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
 }
 
+/* Header Minimalista e Centralizado */
 header {
+    background-color: #ffffff;
+    padding: 80px 20px;
+    border-bottom: 1px solid #f0f0f0;
     text-align: center;
-    padding: 60px 20px;
-    background: #fff;
 }
 
 header h1 {
-    font-size: 2.5rem;
-    letter-spacing: 5px;
+    font-size: 3rem;
     font-weight: 900;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 10px;
 }
 
 header p {
-    color: #888;
-    margin-top: 10px;
+    font-size: 1rem;
+    color: #666;
+    letter-spacing: 2px;
+    font-weight: 400;
 }
 
+/* Grid do Catálogo */
 .container {
-    max-width: 1200px;
+    max-width: 1400px; /* Mais largo para telas grandes */
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px;
-    padding: 40px 20px;
+    /* Gera colunas automaticamente, responsivo */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 30px; /* Espaço entre os cards */
+    padding: 60px 20px;
 }
 
+/* Estilo do Card individual */
 .card {
-    background: #fff;
-    border: 1px solid #eee;
-    transition: transform 0.3s ease;
-    cursor: pointer;
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    overflow: hidden; /* Corta o que sair do card */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animação suave no hover */
 }
 
+/* Efeito ao passar o mouse */
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transform: translateY(-8px); /* Sobe um pouco */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* Sombra suave */
+    border-color: #e0e0e0;
+}
+
+/* Container da Imagem (para crop uniforme) */
+.img-container {
+    width: 100%;
+    height: 300px; /* Altura fixa para alinhar tudo */
+    overflow: hidden;
+    background-color: #f5f5f5; /* Fundo cinza claro para carregar */
 }
 
 .card img {
     width: 100%;
-    height: 250px;
-    object-fit: cover;
-    filter: grayscale(20%);
+    height: 100%;
+    object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
+    transition: transform 0.6s ease;
 }
 
+/* Zoom na imagem ao passar o mouse */
+.card:hover img {
+    transform: scale(1.05);
+}
+
+/* Informações do Tênis */
 .info {
-    padding: 20px;
+    padding: 25px;
     text-align: center;
 }
 
 .info h3 {
     font-size: 1.1rem;
-    margin-bottom: 10px;
+    font-weight: 700;
+    margin-bottom: 12px;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #111;
 }
 
-.info p {
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 15px;
+.info .price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-button {
-    background: #000;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
+/* Botão de Ação Moderno */
+.btn-detalhes {
+    background-color: #000000; /* Botão preto */
+    color: #ffffff;
+    border: 2px solid #000000;
+    padding: 12px 24px;
     width: 100%;
-    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 700;
     text-transform: uppercase;
-    font-size: 0.8rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Efeito de inversão de cor no botão */
+.btn-detalhes:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Footer Simples */
+footer {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #ffffff;
+    border-top: 1px solid #f0f0f0;
+    margin-top: auto;
+}
+
+footer p {
+    color: #999;
+    font-size: 0.85rem;
     letter-spacing: 1px;
 }
 
-footer {
-    text-align: center;
-    padding: 40px;
-    color: #bbb;
-    font-size: 0.9rem;
+/* Ajustes para telas de celular */
+@media (max-width: 600px) {
+    header {
+        padding: 50px 20px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+        letter-spacing: 4px;
+    }
+
+    .container {
+        padding: 30px 15px;
+        gap: 20px;
+    }
 }
