@@ -1,118 +1,79 @@
 /* =========================================
-   SNEAKERHEAD - ESTILO DARK & NEON (FIX)
+   SNEAKERHEAD - FIX TOTAL DE LAYOUT
    ========================================= */
 
 :root {
-    --preto: #050505;
-    --preto-card: #111111;
+    --fundo: #050505;
+    --card: #111111;
     --neon: #00ff88;
     --branco: #ffffff;
-    --borda: #222222;
 }
 
-/* 1. FAZENDO O NAVEGADOR ENTENDER SUAS TAGS PERSONALIZADAS */
-cabeça, corpo, cabeçalho, extensão, principal, aparte, navegação, botão {
-    display: block; /* Força as tags a se comportarem como elementos reais */
+/* 1. FAZ O NAVEGADOR ENTENDER SUAS TAGS */
+corpo, cabeçalho, principal, aparte, extensão, navegação, botão {
+    display: block;
 }
 
 body, corpo {
     margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: var(--preto) !important;
+    padding: 0;
+    background-color: var(--fundo) !important;
     color: var(--branco);
+    font-family: 'Inter', sans-serif;
 }
 
-/* 2. BARRA SUPERIOR (NAVBAR) */
+/* 2. BARRA SUPERIOR */
 cabeçalho[aula="barra superior"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5%;
-    background-color: #000;
-    border-bottom: 1px solid var(--borda);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding: 20px 5%;
+    background: #000;
+    border-bottom: 1px solid #222;
 }
 
-h1[aula="título do site"] {
-    font-size: 22px;
-    font-weight: 900;
-    margin: 0;
-    color: var(--branco);
-}
-
-h1[aula="título do site"]::after {
-    content: "HEAD";
-    color: var(--neon);
-}
-
-/* 3. BANNER PRINCIPAL (HERO) */
-.hero, [aula="layout"] > section:first-child {
-    height: 350px;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                url('https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=1500') center/cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-/* 4. GRADE DE PRODUTOS */
-#grid-produtos {
+/* 3. GRID DE PRODUTOS */
+#grid-produtos, .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 25px;
     padding: 40px 5%;
 }
 
-/* 5. CARD E CORREÇÃO DAS FOTOS (O MAIS IMPORTANTE) */
+/* 4. ONDE OS TÊNIS APARECEM (CARDS) */
 .card {
-    background: var(--preto-card);
+    background: var(--card);
     border-radius: 15px;
-    border: 1px solid var(--borda);
+    border: 1px solid #222;
     overflow: hidden;
-    transition: 0.3s ease;
-    position: relative;
+    transition: 0.3s;
 }
 
-.card:hover { 
-    border-color: var(--neon); 
-    transform: translateY(-5px); 
-}
+.card:hover { border-color: var(--neon); }
 
-/* FIX DAS FOTOS: Centraliza e mostra o tênis inteiro */
+/* FIX DAS IMAGENS: ISSO TRAZ OS TÊNIS DE VOLTA */
 .card img {
     width: 100%;
-    height: 230px;
-    object-fit: contain; /* Não corta o tênis */
-    background-color: #FFFFFF; /* Fundo branco para as fotos aparecerem */
-    padding: 20px;
+    height: 220px;
+    object-fit: contain; /* Mostra o tênis inteiro */
+    background-color: #FFFFFF; /* Fundo branco para destacar o tênis */
+    padding: 15px;
     display: block;
     box-sizing: border-box;
 }
 
-.card-info { padding: 20px; }
-.card-brand { color: var(--neon); font-size: 11px; font-weight: bold; text-transform: uppercase; }
-.card h4 { margin: 8px 0; font-size: 18px; color: var(--branco); }
-.price { color: var(--branco); font-size: 20px; font-weight: 800; }
+.card-info { padding: 15px; }
+.card-brand { color: var(--neon); font-weight: bold; font-size: 11px; }
+.price { font-weight: 800; font-size: 18px; display: block; margin-top: 5px; }
 
-/* 6. BOTÕES E FILTROS */
-botão, .chip, .btn {
-    padding: 10px 20px;
-    border-radius: 50px;
-    border: 1px solid #333;
+/* FILTROS */
+.chip, botão {
+    padding: 8px 18px;
+    border-radius: 20px;
     background: #111;
-    color: white;
+    color: #fff;
+    border: 1px solid #333;
     cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 12px;
 }
 
-.chip.active, .btn-primario {
-    background: var(--neon);
-    color: black;
-    border-color: var(--neon);
-}
+.chip.active { background: var(--neon); color: #000; }
