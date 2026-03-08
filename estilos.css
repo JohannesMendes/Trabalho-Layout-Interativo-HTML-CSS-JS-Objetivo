@@ -1,0 +1,121 @@
+/* =========================================
+   SNEAKERHEAD - AJUSTE TOTAL DE LAYOUT
+   ========================================= */
+
+:root {
+    --preto-puro: #000000;
+    --preto-card: #111111;
+    --verde-neon: #00ff88;
+    --branco: #ffffff;
+    --cinza-linha: #222222;
+}
+
+/* Ajustando as etiquetas personalizadas do seu HTML */
+corpo[aula="tema escuro"], body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--preto-puro) !important;
+    color: var(--branco);
+}
+
+/* --- BARRA SUPERIOR --- */
+cabeçalho[aula="barra superior"] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: #000;
+    border-bottom: 1px solid var(--cinza-linha);
+}
+
+extensão[aula="logotipo"] {
+    font-weight: 900;
+    font-size: 24px;
+    color: var(--branco);
+}
+
+extensão[aula="logotipo"]::after {
+    content: "HEAD";
+    color: var(--verde-neon);
+}
+
+/* --- BANNER NEW ARRIVALS --- */
+.hero, .banner {
+    height: 300px;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=1200') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* --- GRID DE PRODUTOS --- */
+#grid-produtos, .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 40px 5%;
+}
+
+/* --- CARD DOS TÊNIS (FIX DAS FOTOS) --- */
+.card {
+    background: var(--preto-card);
+    border-radius: 15px;
+    border: 1px solid var(--cinza-linha);
+    overflow: hidden;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover { 
+    border-color: var(--verde-neon); 
+    transform: translateY(-5px); 
+}
+
+/* ISSO ARRUMA AS FOTOS QUE ESTÃO QUEBRADAS OU CORTADAS */
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain; /* Mostra o tênis inteiro */
+    background-color: #FFFFFF; /* Fundo branco para destacar o produto */
+    padding: 15px;
+    display: block;
+    box-sizing: border-box;
+}
+
+.card-info { padding: 15px; }
+
+.card-brand { 
+    color: var(--verde-neon); 
+    font-size: 11px; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+}
+
+.price { 
+    color: var(--branco); 
+    font-size: 18px; 
+    font-weight: 800; 
+    margin-top: 10px;
+    display: block;
+}
+
+/* --- BOTÕES --- */
+.chip, .btn, botão {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid #333;
+    background: #111;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.chip.active { 
+    background: var(--verde-neon); 
+    color: black; 
+}
