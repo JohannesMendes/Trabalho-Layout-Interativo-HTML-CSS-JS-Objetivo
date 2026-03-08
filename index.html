@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNEAKERHEAD — Premium Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">SNEAKER<span>HEAD</span></div>
+        <div class="search-bar">
+            <input type="text" id="input-busca" placeholder="O que você está procurando?">
+        </div>
+        <div class="nav-icons">
+            <span id="fav-count">0 ❤️</span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h2>NEW ARRIVALS</h2>
+            <p>A nova coleção de Jordan e Yeezy chegou.</p>
+        </div>
+    </header>
+
+    <div class="filter-bar">
+        <button class="chip active" data-filter="todos">Todos</button>
+        <button class="chip" data-filter="Nike">Nike</button>
+        <button class="chip" data-filter="Adidas">Adidas</button>
+        <button class="chip" data-filter="Jordan">Jordan</button>
+        <button class="chip" data-filter="Yeezy">Yeezy</button>
+    </div>
+
+    <main class="container">
+        <div id="grid-produtos" class="product-grid">
+            </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
