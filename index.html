@@ -1,1 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tênis Store — Catálogo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body class="dark-theme">
 
+  <header class="topbar">
+    <div class="branding">
+      <span class="logo">👟</span>
+      <h1 class="site-title">Tênis Store</h1>
+    </div>
+    <nav class="actions">
+      <button id="seedBtn" class="btn primary">Repopular</button>
+      <button id="clearFavBtn" class="btn danger">Limpar favoritos</button>
+      <button id="toggleThemeBtn" class="btn ghost">Alternar tema</button>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <aside class="filters-panel">
+      <h2>Filtros</h2>
+      <form id="filtersForm" class="filters">
+        <div class="field">
+          <label>Busca</label>
+          <input id="searchInput" type="search" placeholder="Modelo ou marca..." />
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Marca</label>
+            <select id="brandSelect">
+              <option value="">Todas</option>
+              <option>Nike</option>
+              <option>Adidas</option>
+              <option>Vans</option>
+              <option>New Balance</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Número</label>
+            <select id="sizeSelect">
+              <option value="">Todos</option>
+              <option>37</option>
+              <option>38</option>
+              <option>39</option>
+              <option>40</option>
+              <option>41</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Até (R$)</label>
+            <input id="maxPriceInput" type="number" placeholder="Ex: 800" />
+          </div>
+          <div class="field">
+            <label>Ordenar</label>
+            <select id="sortSelect">
+              <option value="">Padrão</option>
+              <option value="price-asc">Preço ↑</option>
+              <option value="price-desc">Preço ↓</option>
+            </select>
+          </div>
+        </div>
+
+        <label class="toggle">
+          <input id="onlyFavInput" type="checkbox" />
+          <span>Somente favoritos</span>
+        </label>
+
+        <div class="actions-row">
+          <button type="submit" class="btn primary">Aplicar Filtros</button>
+          <button type="reset" id="resetBtn" class="btn ghost">Limpar</button>
+        </div>
+      </form>
+
+      <section class="stats">
+        <p><strong>Visíveis:</strong> <span id="visibleCount">0</span></p>
+        <p><strong>Favoritos:</strong> <span id="favCount">0</span></p>
+      </section>
+    </aside>
+
+    <section class="catalog">
+      <div class="catalog-header">
+        <h2>Catálogo de Tênis</h2>
+        <p>Modelos responsivos e atualizados</p>
+      </div>
+      <div id="grid" class="grid"></div>
+      <div id="emptyState" class="empty" hidden>Nenhum tênis encontrado.</div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
